@@ -3,25 +3,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
-});
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
-
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
-});
-
-//
 Template.register.events({
     'submit form': function(event){
         event.preventDefault();
@@ -34,9 +16,7 @@ Template.register.events({
         Router.go('home');
     }
 });
-//
 
-//
 Template.navigation.events({
     'click .logout': function(event){
         event.preventDefault();
@@ -44,9 +24,7 @@ Template.navigation.events({
         Router.go('login');
     }
 })
-//
 
-//
 Template.login.events({
     'submit form': function(event){
         event.preventDefault();
@@ -55,9 +33,7 @@ Template.login.events({
         Meteor.loginWithPassword(email, password);
     }
 });
-//
 
-//
 Meteor.loginWithPassword(email, password, function(error){
     if(error){
         console.log(error.reason);
@@ -65,9 +41,7 @@ Meteor.loginWithPassword(email, password, function(error){
         Router.go("home");
     }
 });
-//
 
-//
 Accounts.createUser({
     email: email,
     password: password
@@ -78,4 +52,3 @@ Accounts.createUser({
         Router.go("home"); // Redirect user if registration succeeds
     }
 });
-//
